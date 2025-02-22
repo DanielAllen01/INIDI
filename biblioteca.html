@@ -42,14 +42,15 @@
         }
 
         .lista-biblioteca img {
-            max-width: 100px;
-            max-height: 100px;
-            display: block; /* Asegura que la imagen se comporte como un bloque */
-            margin: 0 auto 10px; /* Centra la imagen y agrega un margen inferior */
+            max-width: 150px;
+            max-height: 150px;
+            display: block;
+            margin: 0 auto 10px;
+            cursor: pointer; /* Agrega un cursor de puntero para indicar que es clicable */
         }
 
         .lista-biblioteca a {
-            display: block; /* Asegura que el enlace se comporte como un bloque */
+            display: block;
         }
     </style>
 </head>
@@ -108,7 +109,11 @@
                     </div>
                     
                     <div id="libraryItems">
-                        <ul></ul>
+                        <ul>
+                            <li>
+                                <img src="./assets/backend/diversidad.webp" alt="Descargar documento" data-file="./assets/backend/La diversidad cultural educativa indígena.pdf">
+                            </li>
+                        </ul>
                     </div>
                 </section>
             </div>
@@ -120,6 +125,15 @@
     <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
     <script src="assets/js/creative-design.js"></script>
     <script>
+        document.getElementById('libraryItems').addEventListener('click', function(event) {
+            if (event.target.tagName === 'IMG') {
+                const fileUrl = event.target.dataset.file;
+                if (fileUrl) {
+                    window.location.href = fileUrl; // Inicia la descarga del archivo
+                }
+            }
+        });
+
         document.getElementById('uploadForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -134,9 +148,9 @@
                     var newBook = document.createElement('li');
 
                     if (file.type.startsWith('image/')) {
-                        newBook.innerHTML = '<img src="' + e.target.result + '">';
+                        newBook.innerHTML = '<img src="' + e.target.result + '" data-file="' + URL.createObjectURL(file) + '">';
                     } else if (file.type === 'application/pdf') {
-                        newBook.innerHTML = '<a href="' + e.target.result + '" target="_blank">' + file.name + ' (PDF)</a>';
+                        newBook.innerHTML = '<img src="./assets/backend/pdf_icon.png" data-file="' + URL.createObjectURL(file) + '">';
                     } else {
                         newBook.innerHTML = '<h3>' + file.name + '</h3>';
                     }
