@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Creative Design landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Creative Design | Free Bootstrap 4.3.x template</title>
+
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/creative-design.css">
+
+    <style>
+        .bliblioteca-header {
+            text-align: center;
+        }
+        .formulario-con-bordes {
+            margin-top: 4cap;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+
+        .lista-biblioteca {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 0, 0.2);
+            margin-top: 50px;
+        }
+
+        .lista-biblioteca ul {
+            list-style: none;
+            padding: 0;
+            display: flex; /* Muestra los elementos en fila */
+            flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no caben */
+            justify-content: center; /* Centra los elementos horizontalmente */
+        }
+
+        .lista-biblioteca ul li {
+            margin: 10px; /* Espacio entre los elementos */
+            text-align: center; /* Centra el contenido dentro de cada elemento */
+        }
+
+        .lista-biblioteca img {
+            max-width: 100px;
+            max-height: 100px;
+            display: block; /* Asegura que la imagen se comporte como un bloque */
+            margin: 0 auto 10px; /* Centra la imagen y agrega un margen inferior */
+        }
+
+        .lista-biblioteca a {
+            display: block; /* Asegura que el enlace se comporte como un bloque */
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    
+    <nav id="scrollspy" class="navbar page-navbar navbar-light navbar-expand-md fixed-top" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="navbar-brand" href="#"><strong class="text-primary">INI</strong> <span class-dark">DI</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div>
+                <a href="index.html">INICIO</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Acerca</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <header id="home" class="header">
+        <div class="overlay"></div>
+        <div class="header-content">
+            <p>INIDI</p>
+            <h6>INSTITUTO NACIONAL DE IDIOMAS INDIGENAS</h6> 
+        </div>      
+    </header>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <section class="formulario-con-bordes">
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="fileUpload">Selecciona un archivo:</label>
+                            <input type="file" class="form-control-file" id="fileUpload" name="file">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </section>
+            </div>
+            <div class="col-md-6">
+                <section class="lista-biblioteca">
+                    <div class="bliblioteca-header">
+                        <h2>Biblioteca</h2>
+                    </div>
+                    
+                    <div id="libraryItems">
+                        <ul></ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <script src="assets/js/creative-design.js"></script>
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var fileInput = document.getElementById('fileUpload');
+            var file = fileInput.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    var libraryItems = document.getElementById('libraryItems').querySelector('ul');
+                    var newBook = document.createElement('li');
+
+                    if (file.type.startsWith('image/')) {
+                        newBook.innerHTML = '<img src="' + e.target.result + '">';
+                    } else if (file.type === 'application/pdf') {
+                        newBook.innerHTML = '<a href="' + e.target.result + '" target="_blank">' + file.name + ' (PDF)</a>';
+                    } else {
+                        newBook.innerHTML = '<h3>' + file.name + '</h3>';
+                    }
+
+                    libraryItems.appendChild(newBook);
+                };
+
+                if (file.type.startsWith('image/') || file.type === 'application/pdf') {
+                    reader.readAsDataURL(file);
+                } else {
+                    reader.readAsText(file);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
