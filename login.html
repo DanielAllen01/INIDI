@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Creative Design landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Creative Design | Free Bootstrap 4.3.x template</title>
+
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/creative-design.css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    
+    <nav id="scrollspy" class="navbar page-navbar navbar-light navbar-expand-md fixed-top" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="navbar-brand" href="#"><strong class="text-primary">INI</strong> <span class-dark">DI</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div>
+                <a href="index.html">INICIO</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Acerca</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <header id="home" class="header">
+        <div class="overlay"></div>
+        <div class="header-content">
+            <p>INIDI</p>
+            <h6>Inicio de sesión</h6> 
+        </div>      
+    </header>
+
+    <section id="form-section" class="form-section" style="padding: 50px;">
+        <div class="container">
+            <h3>Formulario de Datos del Usuario</h3>
+            <form id="userForm" action="biblioteca.html" method="GET">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="cedula">Cédula:</label>
+                    <input type="text" class="form-control" id="cedula" name="cedula" required>
+                </div>
+                <div class="form-group">
+                    <label for="edad">Edad:</label>
+                    <input type="number" class="form-control" id="edad" name="edad" required>
+                </div>
+                <div class="form-group">
+                    <label for="genero">Género:</label>
+                    <select class="form-control" id="genero" name="genero" required>
+                        <option value="">Seleccionar</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Continuar</button>
+            </form>
+        </div>
+    </section>
+ 
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <script src="assets/js/creative-design.js"></script>
+
+    <script>
+        // Validación del formulario antes de enviarlo
+        document.getElementById("userForm").addEventListener("submit", function(event) {
+            var name = document.getElementById("name").value;
+            var cedula = document.getElementById("cedula").value;
+            var edad = document.getElementById("edad").value;
+            var genero = document.getElementById("genero").value;
+
+            if (!name || !cedula || !edad || !genero) {
+                alert("Por favor, complete todos los campos.");
+                event.preventDefault(); // Previene que el formulario se envíe si no están completos
+            }
+        });
+    </script>
+ 
+</body>
+</html>
